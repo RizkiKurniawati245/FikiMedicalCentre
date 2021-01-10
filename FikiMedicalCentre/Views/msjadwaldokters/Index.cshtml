@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FikiMedicalCentre.Models.msjadwaldokter>
+
+@{
+    ViewBag.Title = "IndexJadwal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tambah Jadwal</h2>
+<br />
+<p>
+    @Html.ActionLink("Tambah", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hari)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.waktu_awal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.waktu_akhir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.msdokter.nama)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.status == 1)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hari)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.waktu_awal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.waktu_akhir)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.msdokter.nama)
+                </td>
+                <td>
+                    @Html.ActionLink("Ubah", "Edit", new { id = item.id_jadwal }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_jadwal }) |
+                    @Html.ActionLink("Hapus", "Delete", new { id = item.id_jadwal })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,106 @@
+﻿@model FikiMedicalCentre.Models.mskaryawan
+
+@{
+    ViewBag.Title = "DetailsKaryawan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details Karyawan</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tempat_lahir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tempat_lahir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tgl_lahir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tgl_lahir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jenis_kelamin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jenis_kelamin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.alamat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alamat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.no_telp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.no_telp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.msrole.deskripsi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.msrole.deskripsi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Ubah", "Edit", new { id = Model.id_karyawan }) |
+    @Html.ActionLink("Kembali", "Index")
+</p>

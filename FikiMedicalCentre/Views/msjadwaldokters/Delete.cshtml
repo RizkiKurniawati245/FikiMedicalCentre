@@ -1,0 +1,64 @@
+﻿@model FikiMedicalCentre.Models.msjadwaldokter
+
+@{
+    ViewBag.Title = "DeleteJadwal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hapus Jadwal Dokter</h2>
+
+<h3>Apakah Anda yakin akan menghapus?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hari)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hari)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.waktu_awal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waktu_awal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.waktu_akhir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waktu_akhir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.msdokter.nama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.msdokter.nama)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Hapus" class="btn btn-default" /> |
+            @Html.ActionLink("Kembali", "Index")
+        </div>
+    }
+</div>

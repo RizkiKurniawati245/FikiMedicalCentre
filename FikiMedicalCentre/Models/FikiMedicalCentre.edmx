@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FIKIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dtkonsultasi">
+          <Key>
+            <PropertyRef Name="id_konsultasi" />
+            <PropertyRef Name="id_obat" />
+          </Key>
+          <Property Name="id_konsultasi" Type="int" Nullable="false" />
+          <Property Name="id_obat" Type="int" Nullable="false" />
+          <Property Name="jumlah" Type="int" Nullable="false" />
+          <Property Name="harga_obat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="msdokter">
+          <Key>
+            <PropertyRef Name="id_dokter" />
+          </Key>
+          <Property Name="id_dokter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="tempat_lahir" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tgl_lahir" Type="date" Nullable="false" />
+          <Property Name="jenis_kelamin" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="no_telp" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jenis_dokter" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="harga_jasa" Type="bigint" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="msjadwaldokter">
+          <Key>
+            <PropertyRef Name="id_jadwal" />
+          </Key>
+          <Property Name="id_jadwal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hari" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="waktu_awal" Type="time" Precision="7" Nullable="false" />
+          <Property Name="waktu_akhir" Type="time" Precision="7" Nullable="false" />
+          <Property Name="id_dokter" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mskaryawan">
+          <Key>
+            <PropertyRef Name="id_karyawan" />
+          </Key>
+          <Property Name="id_karyawan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="tempat_lahir" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tgl_lahir" Type="date" Nullable="false" />
+          <Property Name="jenis_kelamin" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="no_telp" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="msobat">
+          <Key>
+            <PropertyRef Name="id_obat" />
+          </Key>
+          <Property Name="id_obat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama" Type="varchar" MaxLength="100" />
+          <Property Name="harga" Type="int" />
+          <Property Name="stok" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="mspasien">
+          <Key>
+            <PropertyRef Name="id_pasien" />
+          </Key>
+          <Property Name="id_pasien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="tempat_lahir" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tgl_lahir" Type="date" Nullable="false" />
+          <Property Name="jenis_kelamin" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="no_telp" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="msrole">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deskripsi" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trkonsultasi">
+          <Key>
+            <PropertyRef Name="id_konsultasi" />
+          </Key>
+          <Property Name="id_konsultasi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tgl_konsultasi" Type="datetime" Nullable="false" />
+          <Property Name="id_daftar_konsultasi" Type="int" Nullable="false" />
+          <Property Name="saran_dokter" Type="varchar(max)" Nullable="false" />
+          <Property Name="biaya_konsultasi" Type="bigint" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trpembayaran">
+          <Key>
+            <PropertyRef Name="id_pembayaran" />
+          </Key>
+          <Property Name="id_pembayaran" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tgl_pembayaran" Type="datetime" Nullable="false" />
+          <Property Name="id_konsultasi" Type="int" Nullable="false" />
+          <Property Name="total_biaya" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trpendaftaran_konsultasi">
+          <Key>
+            <PropertyRef Name="id_daftar_konsultasi" />
+          </Key>
+          <Property Name="id_daftar_konsultasi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tgl_daftar_konsultasi" Type="datetime" Nullable="false" />
+          <Property Name="id_pasien" Type="int" Nullable="false" />
+          <Property Name="id_dokter" Type="int" Nullable="false" />
+          <Property Name="jenis_pembayaran" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trpengambilan_obat">
+          <Key>
+            <PropertyRef Name="id_ambil_obat" />
+          </Key>
+          <Property Name="id_ambil_obat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pembayaran" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dtkonsultasi_msobat">
+          <End Role="msobat" Type="Self.msobat" Multiplicity="1" />
+          <End Role="dtkonsultasi" Type="Self.dtkonsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msobat">
+              <PropertyRef Name="id_obat" />
+            </Principal>
+            <Dependent Role="dtkonsultasi">
+              <PropertyRef Name="id_obat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dtkonsultasi_trkonsultasi">
+          <End Role="trkonsultasi" Type="Self.trkonsultasi" Multiplicity="1" />
+          <End Role="dtkonsultasi" Type="Self.dtkonsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trkonsultasi">
+              <PropertyRef Name="id_konsultasi" />
+            </Principal>
+            <Dependent Role="dtkonsultasi">
+              <PropertyRef Name="id_konsultasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_msdokter_msrole">
+          <End Role="msrole" Type="Self.msrole" Multiplicity="1" />
+          <End Role="msdokter" Type="Self.msdokter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msrole">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="msdokter">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_msjadwaldokter_msdokter">
+          <End Role="msdokter" Type="Self.msdokter" Multiplicity="1" />
+          <End Role="msjadwaldokter" Type="Self.msjadwaldokter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msdokter">
+              <PropertyRef Name="id_dokter" />
+            </Principal>
+            <Dependent Role="msjadwaldokter">
+              <PropertyRef Name="id_dokter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mskaryawan_msrole">
+          <End Role="msrole" Type="Self.msrole" Multiplicity="1" />
+          <End Role="mskaryawan" Type="Self.mskaryawan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msrole">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="mskaryawan">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mspasien_msrole">
+          <End Role="msrole" Type="Self.msrole" Multiplicity="1" />
+          <End Role="mspasien" Type="Self.mspasien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msrole">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="mspasien">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trkonsultasi_trpendaftaran_konsultasi">
+          <End Role="trpendaftaran_konsultasi" Type="Self.trpendaftaran_konsultasi" Multiplicity="1" />
+          <End Role="trkonsultasi" Type="Self.trkonsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trpendaftaran_konsultasi">
+              <PropertyRef Name="id_daftar_konsultasi" />
+            </Principal>
+            <Dependent Role="trkonsultasi">
+              <PropertyRef Name="id_daftar_konsultasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpembayaran_trkonsultasi">
+          <End Role="trkonsultasi" Type="Self.trkonsultasi" Multiplicity="1" />
+          <End Role="trpembayaran" Type="Self.trpembayaran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trkonsultasi">
+              <PropertyRef Name="id_konsultasi" />
+            </Principal>
+            <Dependent Role="trpembayaran">
+              <PropertyRef Name="id_konsultasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpendaftaran_konsultasi_msdokter">
+          <End Role="msdokter" Type="Self.msdokter" Multiplicity="1" />
+          <End Role="trpendaftaran_konsultasi" Type="Self.trpendaftaran_konsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msdokter">
+              <PropertyRef Name="id_dokter" />
+            </Principal>
+            <Dependent Role="trpendaftaran_konsultasi">
+              <PropertyRef Name="id_dokter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpendaftaran_konsultasi_mspasien">
+          <End Role="mspasien" Type="Self.mspasien" Multiplicity="1" />
+          <End Role="trpendaftaran_konsultasi" Type="Self.trpendaftaran_konsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mspasien">
+              <PropertyRef Name="id_pasien" />
+            </Principal>
+            <Dependent Role="trpendaftaran_konsultasi">
+              <PropertyRef Name="id_pasien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpengambilan_obat_trpembayaran">
+          <End Role="trpembayaran" Type="Self.trpembayaran" Multiplicity="1" />
+          <End Role="trpengambilan_obat" Type="Self.trpengambilan_obat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trpembayaran">
+              <PropertyRef Name="id_pembayaran" />
+            </Principal>
+            <Dependent Role="trpengambilan_obat">
+              <PropertyRef Name="id_pembayaran" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FIKIModelStoreContainer">
+          <EntitySet Name="dtkonsultasi" EntityType="Self.dtkonsultasi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="msdokter" EntityType="Self.msdokter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="msjadwaldokter" EntityType="Self.msjadwaldokter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mskaryawan" EntityType="Self.mskaryawan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="msobat" EntityType="Self.msobat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mspasien" EntityType="Self.mspasien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="msrole" EntityType="Self.msrole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trkonsultasi" EntityType="Self.trkonsultasi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trpembayaran" EntityType="Self.trpembayaran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trpendaftaran_konsultasi" EntityType="Self.trpendaftaran_konsultasi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trpengambilan_obat" EntityType="Self.trpengambilan_obat" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dtkonsultasi_msobat" Association="Self.FK_dtkonsultasi_msobat">
+            <End Role="msobat" EntitySet="msobat" />
+            <End Role="dtkonsultasi" EntitySet="dtkonsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dtkonsultasi_trkonsultasi" Association="Self.FK_dtkonsultasi_trkonsultasi">
+            <End Role="trkonsultasi" EntitySet="trkonsultasi" />
+            <End Role="dtkonsultasi" EntitySet="dtkonsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_msdokter_msrole" Association="Self.FK_msdokter_msrole">
+            <End Role="msrole" EntitySet="msrole" />
+            <End Role="msdokter" EntitySet="msdokter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_msjadwaldokter_msdokter" Association="Self.FK_msjadwaldokter_msdokter">
+            <End Role="msdokter" EntitySet="msdokter" />
+            <End Role="msjadwaldokter" EntitySet="msjadwaldokter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mskaryawan_msrole" Association="Self.FK_mskaryawan_msrole">
+            <End Role="msrole" EntitySet="msrole" />
+            <End Role="mskaryawan" EntitySet="mskaryawan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mspasien_msrole" Association="Self.FK_mspasien_msrole">
+            <End Role="msrole" EntitySet="msrole" />
+            <End Role="mspasien" EntitySet="mspasien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trkonsultasi_trpendaftaran_konsultasi" Association="Self.FK_trkonsultasi_trpendaftaran_konsultasi">
+            <End Role="trpendaftaran_konsultasi" EntitySet="trpendaftaran_konsultasi" />
+            <End Role="trkonsultasi" EntitySet="trkonsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpembayaran_trkonsultasi" Association="Self.FK_trpembayaran_trkonsultasi">
+            <End Role="trkonsultasi" EntitySet="trkonsultasi" />
+            <End Role="trpembayaran" EntitySet="trpembayaran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpendaftaran_konsultasi_msdokter" Association="Self.FK_trpendaftaran_konsultasi_msdokter">
+            <End Role="msdokter" EntitySet="msdokter" />
+            <End Role="trpendaftaran_konsultasi" EntitySet="trpendaftaran_konsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpendaftaran_konsultasi_mspasien" Association="Self.FK_trpendaftaran_konsultasi_mspasien">
+            <End Role="mspasien" EntitySet="mspasien" />
+            <End Role="trpendaftaran_konsultasi" EntitySet="trpendaftaran_konsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpengambilan_obat_trpembayaran" Association="Self.FK_trpengambilan_obat_trpembayaran">
+            <End Role="trpembayaran" EntitySet="trpembayaran" />
+            <End Role="trpengambilan_obat" EntitySet="trpengambilan_obat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FIKIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dtkonsultasi">
+          <Key>
+            <PropertyRef Name="id_konsultasi" />
+            <PropertyRef Name="id_obat" />
+          </Key>
+          <Property Name="id_konsultasi" Type="Int32" Nullable="false" />
+          <Property Name="id_obat" Type="Int32" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" Nullable="false" />
+          <Property Name="harga_obat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="msobat" Relationship="Self.FK_dtkonsultasi_msobat" FromRole="dtkonsultasi" ToRole="msobat" />
+          <NavigationProperty Name="trkonsultasi" Relationship="Self.FK_dtkonsultasi_trkonsultasi" FromRole="dtkonsultasi" ToRole="trkonsultasi" />
+        </EntityType>
+        <EntityType Name="msdokter">
+          <Key>
+            <PropertyRef Name="id_dokter" />
+          </Key>
+          <Property Name="id_dokter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tempat_lahir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tgl_lahir" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jenis_kelamin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_telp" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jenis_dokter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="harga_jasa" Type="Int64" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="msrole" Relationship="Self.FK_msdokter_msrole" FromRole="msdokter" ToRole="msrole" />
+          <NavigationProperty Name="msjadwaldokters" Relationship="Self.FK_msjadwaldokter_msdokter" FromRole="msdokter" ToRole="msjadwaldokter" />
+          <NavigationProperty Name="trpendaftaran_konsultasi" Relationship="Self.FK_trpendaftaran_konsultasi_msdokter" FromRole="msdokter" ToRole="trpendaftaran_konsultasi" />
+        </EntityType>
+        <EntityType Name="msjadwaldokter">
+          <Key>
+            <PropertyRef Name="id_jadwal" />
+          </Key>
+          <Property Name="id_jadwal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hari" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="waktu_awal" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="waktu_akhir" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="id_dokter" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="msdokter" Relationship="Self.FK_msjadwaldokter_msdokter" FromRole="msjadwaldokter" ToRole="msdokter" />
+        </EntityType>
+        <EntityType Name="mskaryawan">
+          <Key>
+            <PropertyRef Name="id_karyawan" />
+          </Key>
+          <Property Name="id_karyawan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tempat_lahir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tgl_lahir" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jenis_kelamin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_telp" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="msrole" Relationship="Self.FK_mskaryawan_msrole" FromRole="mskaryawan" ToRole="msrole" />
+        </EntityType>
+        <EntityType Name="msobat">
+          <Key>
+            <PropertyRef Name="id_obat" />
+          </Key>
+          <Property Name="id_obat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="harga" Type="Int32" />
+          <Property Name="stok" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="dtkonsultasis" Relationship="Self.FK_dtkonsultasi_msobat" FromRole="msobat" ToRole="dtkonsultasi" />
+        </EntityType>
+        <EntityType Name="mspasien">
+          <Key>
+            <PropertyRef Name="id_pasien" />
+          </Key>
+          <Property Name="id_pasien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tempat_lahir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tgl_lahir" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jenis_kelamin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_telp" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="msrole" Relationship="Self.FK_mspasien_msrole" FromRole="mspasien" ToRole="msrole" />
+          <NavigationProperty Name="trpendaftaran_konsultasi" Relationship="Self.FK_trpendaftaran_konsultasi_mspasien" FromRole="mspasien" ToRole="trpendaftaran_konsultasi" />
+        </EntityType>
+        <EntityType Name="msrole">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deskripsi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="msdokters" Relationship="Self.FK_msdokter_msrole" FromRole="msrole" ToRole="msdokter" />
+          <NavigationProperty Name="mskaryawans" Relationship="Self.FK_mskaryawan_msrole" FromRole="msrole" ToRole="mskaryawan" />
+          <NavigationProperty Name="mspasiens" Relationship="Self.FK_mspasien_msrole" FromRole="msrole" ToRole="mspasien" />
+        </EntityType>
+        <EntityType Name="trkonsultasi">
+          <Key>
+            <PropertyRef Name="id_konsultasi" />
+          </Key>
+          <Property Name="id_konsultasi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgl_konsultasi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_daftar_konsultasi" Type="Int32" Nullable="false" />
+          <Property Name="saran_dokter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="biaya_konsultasi" Type="Int64" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="dtkonsultasis" Relationship="Self.FK_dtkonsultasi_trkonsultasi" FromRole="trkonsultasi" ToRole="dtkonsultasi" />
+          <NavigationProperty Name="trpendaftaran_konsultasi" Relationship="Self.FK_trkonsultasi_trpendaftaran_konsultasi" FromRole="trkonsultasi" ToRole="trpendaftaran_konsultasi" />
+          <NavigationProperty Name="trpembayarans" Relationship="Self.FK_trpembayaran_trkonsultasi" FromRole="trkonsultasi" ToRole="trpembayaran" />
+        </EntityType>
+        <EntityType Name="trpembayaran">
+          <Key>
+            <PropertyRef Name="id_pembayaran" />
+          </Key>
+          <Property Name="id_pembayaran" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgl_pembayaran" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_konsultasi" Type="Int32" Nullable="false" />
+          <Property Name="total_biaya" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="trkonsultasi" Relationship="Self.FK_trpembayaran_trkonsultasi" FromRole="trpembayaran" ToRole="trkonsultasi" />
+          <NavigationProperty Name="trpengambilan_obat" Relationship="Self.FK_trpengambilan_obat_trpembayaran" FromRole="trpembayaran" ToRole="trpengambilan_obat" />
+        </EntityType>
+        <EntityType Name="trpendaftaran_konsultasi">
+          <Key>
+            <PropertyRef Name="id_daftar_konsultasi" />
+          </Key>
+          <Property Name="id_daftar_konsultasi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgl_daftar_konsultasi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_pasien" Type="Int32" Nullable="false" />
+          <Property Name="id_dokter" Type="Int32" Nullable="false" />
+          <Property Name="jenis_pembayaran" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="msdokter" Relationship="Self.FK_trpendaftaran_konsultasi_msdokter" FromRole="trpendaftaran_konsultasi" ToRole="msdokter" />
+          <NavigationProperty Name="mspasien" Relationship="Self.FK_trpendaftaran_konsultasi_mspasien" FromRole="trpendaftaran_konsultasi" ToRole="mspasien" />
+          <NavigationProperty Name="trkonsultasis" Relationship="Self.FK_trkonsultasi_trpendaftaran_konsultasi" FromRole="trpendaftaran_konsultasi" ToRole="trkonsultasi" />
+        </EntityType>
+        <EntityType Name="trpengambilan_obat">
+          <Key>
+            <PropertyRef Name="id_ambil_obat" />
+          </Key>
+          <Property Name="id_ambil_obat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pembayaran" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="trpembayaran" Relationship="Self.FK_trpengambilan_obat_trpembayaran" FromRole="trpengambilan_obat" ToRole="trpembayaran" />
+        </EntityType>
+        <Association Name="FK_dtkonsultasi_msobat">
+          <End Role="msobat" Type="Self.msobat" Multiplicity="1" />
+          <End Role="dtkonsultasi" Type="Self.dtkonsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msobat">
+              <PropertyRef Name="id_obat" />
+            </Principal>
+            <Dependent Role="dtkonsultasi">
+              <PropertyRef Name="id_obat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dtkonsultasi_trkonsultasi">
+          <End Role="trkonsultasi" Type="Self.trkonsultasi" Multiplicity="1" />
+          <End Role="dtkonsultasi" Type="Self.dtkonsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trkonsultasi">
+              <PropertyRef Name="id_konsultasi" />
+            </Principal>
+            <Dependent Role="dtkonsultasi">
+              <PropertyRef Name="id_konsultasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_msdokter_msrole">
+          <End Role="msrole" Type="Self.msrole" Multiplicity="1" />
+          <End Role="msdokter" Type="Self.msdokter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msrole">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="msdokter">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_msjadwaldokter_msdokter">
+          <End Role="msdokter" Type="Self.msdokter" Multiplicity="1" />
+          <End Role="msjadwaldokter" Type="Self.msjadwaldokter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msdokter">
+              <PropertyRef Name="id_dokter" />
+            </Principal>
+            <Dependent Role="msjadwaldokter">
+              <PropertyRef Name="id_dokter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpendaftaran_konsultasi_msdokter">
+          <End Role="msdokter" Type="Self.msdokter" Multiplicity="1" />
+          <End Role="trpendaftaran_konsultasi" Type="Self.trpendaftaran_konsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msdokter">
+              <PropertyRef Name="id_dokter" />
+            </Principal>
+            <Dependent Role="trpendaftaran_konsultasi">
+              <PropertyRef Name="id_dokter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mskaryawan_msrole">
+          <End Role="msrole" Type="Self.msrole" Multiplicity="1" />
+          <End Role="mskaryawan" Type="Self.mskaryawan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msrole">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="mskaryawan">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mspasien_msrole">
+          <End Role="msrole" Type="Self.msrole" Multiplicity="1" />
+          <End Role="mspasien" Type="Self.mspasien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="msrole">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="mspasien">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpendaftaran_konsultasi_mspasien">
+          <End Role="mspasien" Type="Self.mspasien" Multiplicity="1" />
+          <End Role="trpendaftaran_konsultasi" Type="Self.trpendaftaran_konsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mspasien">
+              <PropertyRef Name="id_pasien" />
+            </Principal>
+            <Dependent Role="trpendaftaran_konsultasi">
+              <PropertyRef Name="id_pasien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trkonsultasi_trpendaftaran_konsultasi">
+          <End Role="trpendaftaran_konsultasi" Type="Self.trpendaftaran_konsultasi" Multiplicity="1" />
+          <End Role="trkonsultasi" Type="Self.trkonsultasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trpendaftaran_konsultasi">
+              <PropertyRef Name="id_daftar_konsultasi" />
+            </Principal>
+            <Dependent Role="trkonsultasi">
+              <PropertyRef Name="id_daftar_konsultasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpembayaran_trkonsultasi">
+          <End Role="trkonsultasi" Type="Self.trkonsultasi" Multiplicity="1" />
+          <End Role="trpembayaran" Type="Self.trpembayaran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trkonsultasi">
+              <PropertyRef Name="id_konsultasi" />
+            </Principal>
+            <Dependent Role="trpembayaran">
+              <PropertyRef Name="id_konsultasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trpengambilan_obat_trpembayaran">
+          <End Role="trpembayaran" Type="Self.trpembayaran" Multiplicity="1" />
+          <End Role="trpengambilan_obat" Type="Self.trpengambilan_obat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trpembayaran">
+              <PropertyRef Name="id_pembayaran" />
+            </Principal>
+            <Dependent Role="trpengambilan_obat">
+              <PropertyRef Name="id_pembayaran" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FIKIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dtkonsultasis" EntityType="Self.dtkonsultasi" />
+          <EntitySet Name="msdokters" EntityType="Self.msdokter" />
+          <EntitySet Name="msjadwaldokters" EntityType="Self.msjadwaldokter" />
+          <EntitySet Name="mskaryawans" EntityType="Self.mskaryawan" />
+          <EntitySet Name="msobats" EntityType="Self.msobat" />
+          <EntitySet Name="mspasiens" EntityType="Self.mspasien" />
+          <EntitySet Name="msroles" EntityType="Self.msrole" />
+          <EntitySet Name="trkonsultasis" EntityType="Self.trkonsultasi" />
+          <EntitySet Name="trpembayarans" EntityType="Self.trpembayaran" />
+          <EntitySet Name="trpendaftaran_konsultasi" EntityType="Self.trpendaftaran_konsultasi" />
+          <EntitySet Name="trpengambilan_obat" EntityType="Self.trpengambilan_obat" />
+          <AssociationSet Name="FK_dtkonsultasi_msobat" Association="Self.FK_dtkonsultasi_msobat">
+            <End Role="msobat" EntitySet="msobats" />
+            <End Role="dtkonsultasi" EntitySet="dtkonsultasis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dtkonsultasi_trkonsultasi" Association="Self.FK_dtkonsultasi_trkonsultasi">
+            <End Role="trkonsultasi" EntitySet="trkonsultasis" />
+            <End Role="dtkonsultasi" EntitySet="dtkonsultasis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_msdokter_msrole" Association="Self.FK_msdokter_msrole">
+            <End Role="msrole" EntitySet="msroles" />
+            <End Role="msdokter" EntitySet="msdokters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_msjadwaldokter_msdokter" Association="Self.FK_msjadwaldokter_msdokter">
+            <End Role="msdokter" EntitySet="msdokters" />
+            <End Role="msjadwaldokter" EntitySet="msjadwaldokters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpendaftaran_konsultasi_msdokter" Association="Self.FK_trpendaftaran_konsultasi_msdokter">
+            <End Role="msdokter" EntitySet="msdokters" />
+            <End Role="trpendaftaran_konsultasi" EntitySet="trpendaftaran_konsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mskaryawan_msrole" Association="Self.FK_mskaryawan_msrole">
+            <End Role="msrole" EntitySet="msroles" />
+            <End Role="mskaryawan" EntitySet="mskaryawans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mspasien_msrole" Association="Self.FK_mspasien_msrole">
+            <End Role="msrole" EntitySet="msroles" />
+            <End Role="mspasien" EntitySet="mspasiens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpendaftaran_konsultasi_mspasien" Association="Self.FK_trpendaftaran_konsultasi_mspasien">
+            <End Role="mspasien" EntitySet="mspasiens" />
+            <End Role="trpendaftaran_konsultasi" EntitySet="trpendaftaran_konsultasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trkonsultasi_trpendaftaran_konsultasi" Association="Self.FK_trkonsultasi_trpendaftaran_konsultasi">
+            <End Role="trpendaftaran_konsultasi" EntitySet="trpendaftaran_konsultasi" />
+            <End Role="trkonsultasi" EntitySet="trkonsultasis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpembayaran_trkonsultasi" Association="Self.FK_trpembayaran_trkonsultasi">
+            <End Role="trkonsultasi" EntitySet="trkonsultasis" />
+            <End Role="trpembayaran" EntitySet="trpembayarans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trpengambilan_obat_trpembayaran" Association="Self.FK_trpengambilan_obat_trpembayaran">
+            <End Role="trpembayaran" EntitySet="trpembayarans" />
+            <End Role="trpengambilan_obat" EntitySet="trpengambilan_obat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FIKIModelStoreContainer" CdmEntityContainer="FIKIEntities">
+          <EntitySetMapping Name="dtkonsultasis">
+            <EntityTypeMapping TypeName="FIKIModel.dtkonsultasi">
+              <MappingFragment StoreEntitySet="dtkonsultasi">
+                <ScalarProperty Name="id_konsultasi" ColumnName="id_konsultasi" />
+                <ScalarProperty Name="id_obat" ColumnName="id_obat" />
+                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+                <ScalarProperty Name="harga_obat" ColumnName="harga_obat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="msdokters">
+            <EntityTypeMapping TypeName="FIKIModel.msdokter">
+              <MappingFragment StoreEntitySet="msdokter">
+                <ScalarProperty Name="id_dokter" ColumnName="id_dokter" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="tempat_lahir" ColumnName="tempat_lahir" />
+                <ScalarProperty Name="tgl_lahir" ColumnName="tgl_lahir" />
+                <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_telp" ColumnName="no_telp" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="jenis_dokter" ColumnName="jenis_dokter" />
+                <ScalarProperty Name="harga_jasa" ColumnName="harga_jasa" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="msjadwaldokters">
+            <EntityTypeMapping TypeName="FIKIModel.msjadwaldokter">
+              <MappingFragment StoreEntitySet="msjadwaldokter">
+                <ScalarProperty Name="id_jadwal" ColumnName="id_jadwal" />
+                <ScalarProperty Name="hari" ColumnName="hari" />
+                <ScalarProperty Name="waktu_awal" ColumnName="waktu_awal" />
+                <ScalarProperty Name="waktu_akhir" ColumnName="waktu_akhir" />
+                <ScalarProperty Name="id_dokter" ColumnName="id_dokter" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mskaryawans">
+            <EntityTypeMapping TypeName="FIKIModel.mskaryawan">
+              <MappingFragment StoreEntitySet="mskaryawan">
+                <ScalarProperty Name="id_karyawan" ColumnName="id_karyawan" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="tempat_lahir" ColumnName="tempat_lahir" />
+                <ScalarProperty Name="tgl_lahir" ColumnName="tgl_lahir" />
+                <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_telp" ColumnName="no_telp" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="msobats">
+            <EntityTypeMapping TypeName="FIKIModel.msobat">
+              <MappingFragment StoreEntitySet="msobat">
+                <ScalarProperty Name="id_obat" ColumnName="id_obat" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="harga" ColumnName="harga" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mspasiens">
+            <EntityTypeMapping TypeName="FIKIModel.mspasien">
+              <MappingFragment StoreEntitySet="mspasien">
+                <ScalarProperty Name="id_pasien" ColumnName="id_pasien" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="tempat_lahir" ColumnName="tempat_lahir" />
+                <ScalarProperty Name="tgl_lahir" ColumnName="tgl_lahir" />
+                <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_telp" ColumnName="no_telp" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="msroles">
+            <EntityTypeMapping TypeName="FIKIModel.msrole">
+              <MappingFragment StoreEntitySet="msrole">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trkonsultasis">
+            <EntityTypeMapping TypeName="FIKIModel.trkonsultasi">
+              <MappingFragment StoreEntitySet="trkonsultasi">
+                <ScalarProperty Name="id_konsultasi" ColumnName="id_konsultasi" />
+                <ScalarProperty Name="tgl_konsultasi" ColumnName="tgl_konsultasi" />
+                <ScalarProperty Name="id_daftar_konsultasi" ColumnName="id_daftar_konsultasi" />
+                <ScalarProperty Name="saran_dokter" ColumnName="saran_dokter" />
+                <ScalarProperty Name="biaya_konsultasi" ColumnName="biaya_konsultasi" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trpembayarans">
+            <EntityTypeMapping TypeName="FIKIModel.trpembayaran">
+              <MappingFragment StoreEntitySet="trpembayaran">
+                <ScalarProperty Name="id_pembayaran" ColumnName="id_pembayaran" />
+                <ScalarProperty Name="tgl_pembayaran" ColumnName="tgl_pembayaran" />
+                <ScalarProperty Name="id_konsultasi" ColumnName="id_konsultasi" />
+                <ScalarProperty Name="total_biaya" ColumnName="total_biaya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trpendaftaran_konsultasi">
+            <EntityTypeMapping TypeName="FIKIModel.trpendaftaran_konsultasi">
+              <MappingFragment StoreEntitySet="trpendaftaran_konsultasi">
+                <ScalarProperty Name="id_daftar_konsultasi" ColumnName="id_daftar_konsultasi" />
+                <ScalarProperty Name="tgl_daftar_konsultasi" ColumnName="tgl_daftar_konsultasi" />
+                <ScalarProperty Name="id_pasien" ColumnName="id_pasien" />
+                <ScalarProperty Name="id_dokter" ColumnName="id_dokter" />
+                <ScalarProperty Name="jenis_pembayaran" ColumnName="jenis_pembayaran" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trpengambilan_obat">
+            <EntityTypeMapping TypeName="FIKIModel.trpengambilan_obat">
+              <MappingFragment StoreEntitySet="trpengambilan_obat">
+                <ScalarProperty Name="id_ambil_obat" ColumnName="id_ambil_obat" />
+                <ScalarProperty Name="id_pembayaran" ColumnName="id_pembayaran" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
